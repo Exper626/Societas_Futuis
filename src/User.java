@@ -1,10 +1,10 @@
-public  class User {
+public class User {
     private String password;
-    private String first_name;
+    private String first_name = "lama";
     private String last_name;
     private String contact_number;
 
-    public void User(String password, String first_name, String last_name, String contact_number){
+    User(String password, String first_name, String last_name, String contact_number){
         this.password = password;
         this.first_name = first_name;
         this.last_name = last_name;
