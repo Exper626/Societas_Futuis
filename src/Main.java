@@ -2,10 +2,14 @@ import java.util.Scanner;
 
 public class Main {
     private Scanner input = new Scanner(System.in);
+    private Scanner usernameInput = new Scanner(System.in);
+    private Scanner passwordInput = new Scanner(System.in);
 
     public static void main(String[] args) {
+        Login login = new Login();
         Main main = new Main();
         int option;
+        String username,password, userType;
 
         while(true){
             main.printNewMenu();
@@ -17,7 +21,31 @@ public class Main {
                 break;
             }
             else if (option == 2) {
-                System.out.println("login");
+                while(true){
+                    main.printLoginMenu();
+                    Scanner usernameInput = new Scanner(System.in);
+                    System.out.print("\nUsername: ");
+                    username = usernameInput.nextLine();
+
+                    Scanner passwordInput = new Scanner(System.in);
+                    System.out.print("Password: ");
+                    password = passwordInput.nextLine();
+                    try{
+                        userType = String.valueOf(username.charAt(0));
+                        if (userType.equals("a")){
+                            Advisor loggedAdvisor = (Advisor) login.loginAuth(username, password);
+                            break;
+                        }
+                    }
+                    catch (ClassCastException e){
+                        System.out.println("Invalid credentials. Please try again..");
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
+
+                }
+                System.out.println("hiii");
                 break;
 
             }
@@ -41,5 +69,10 @@ public class Main {
                 "1 - Register\n" +
                 "2 - Log In\n" +
                 "0 - Quit\n");
+    }
+
+    public void printLoginMenu(){
+        System.out.println("\n------------- Login -------------");
+        System.out.print("Please enter your username and password to proceed,");
     }
 }

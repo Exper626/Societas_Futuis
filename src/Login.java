@@ -16,16 +16,14 @@ public class Login {
             String dataPassword = data.getString("password");
             String dataFirstName = data.getString("first_name");
             String dataLastName = data.getString("last_name");
-            String dataContactNumber = data.getString("contact_number");
-            String dataEmail = data.getString("email");
-
 
             if ((username.equals(dataUsername)) && (password.equals(dataPassword))){
-                System.out.println("Welcome " + dataFirstName);
-                sqlConnection.closeConnection();
                 isLoginAuth = true;
                 if (username.charAt(0) == 'a'){
+                    String dataContactNumber = data.getString("contact_number");
+                    String dataEmail = data.getString("email");
                     Advisor loggedAdvisor = new Advisor(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataEmail);
+                    System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
                     setUserType("a");
                     return loggedAdvisor;
                 } else if (username.charAt(0) == 's') {
@@ -33,6 +31,7 @@ public class Login {
                     setUserType("s");
                     return loggedStudent;
                 }
+                sqlConnection.closeConnection();
             }
         }
         sqlConnection.closeConnection();
