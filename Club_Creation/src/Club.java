@@ -5,19 +5,17 @@ public class Club {
     private String club_id;
     private String club_name;
     private String club_description;
+    private String membershipCriteria;
+
     private boolean club_status = true;
 
     private SqlConnection sqlConnection = new SqlConnection();
 
-    public Club(String club_name, String club_description){
-        try{
-            this.club_id = generateClubId();
-        }
-        catch (Exception e){
-            System.out.println(e);
-        }
+    public Club(String club_id, String club_name, String club_description, String membershipCriteria){
+        this.club_id = club_id;
         this.club_name = club_name;
         this.club_description = club_description;
+        this.membershipCriteria = membershipCriteria;
     }
 
     public String generateClubId() throws SQLException {
