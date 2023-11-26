@@ -11,7 +11,7 @@ public class Club {
 
     public Club(String club_name, String club_description){
         try{
-            this.club_id = generateId();
+            this.club_id = generateClubId();
         }
         catch (Exception e){
             System.out.println(e);
@@ -20,7 +20,7 @@ public class Club {
         this.club_description = club_description;
     }
 
-    public String generateId() throws SQLException {
+    public String generateClubId() throws SQLException {
         sqlConnection.startConnection();
         String getLatestId = "SELECT * FROM test.club ORDER BY club_id DESC LIMIT 1";
         ResultSet latestIdResult = sqlConnection.executeQuery(getLatestId);
