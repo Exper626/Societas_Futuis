@@ -9,7 +9,7 @@ public class Main {
         Login login = new Login();
         Main main = new Main();
         int option;
-        String username,password, userType;
+        String username, password, userType, firstName, lastName, contactNumber, dateOfBirth, yearOfStudy;
 
         while(true){
             main.printNewMenu();
@@ -17,8 +17,45 @@ public class Main {
             option = main.input.nextInt();
 
             if(option == 1){
-                System.out.println("register");
-                break;
+                main.printRegMenu();
+
+                System.out.print("\nFirst name: ");
+                firstName = main.input.next();
+
+
+
+                System.out.print("Last name: ");
+                lastName = main.input.next();
+
+
+                System.out.print("Contact number: ");
+                contactNumber = main.input.next();
+
+
+                System.out.print("Date of birth(Format:yyyy-mm-dd ): ");
+                dateOfBirth = main.input.next();
+
+
+                System.out.print("Year of study: ");
+                yearOfStudy = main.input.next();
+
+
+                System.out.print("Password: ");
+                password = main.input.next();
+
+
+                Register register = new Register();
+
+                register.register(password, firstName, lastName, contactNumber, dateOfBirth, yearOfStudy);
+
+                if (register.getConfirmation().equals("c")){
+                    System.out.println("Welcome " + firstName + "!");
+                    System.out.println("Please select the clubs you want to join,");
+                }
+                else {
+
+                }
+
             }
             else if (option == 2) {
                 while(true){
@@ -74,5 +111,10 @@ public class Main {
     public void printLoginMenu(){
         System.out.println("\n------------- Login -------------");
         System.out.print("Please enter your username and password to proceed,");
+    }
+
+    public void printRegMenu(){
+        System.out.println("\n------------- Registration -------------");
+        System.out.print("Please enter the following details,");
     }
 }
