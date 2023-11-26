@@ -25,18 +25,10 @@ public class ClubFunc {
         System.out.println(line);
 
         while(data.next()){
-            String clubId, clubName, clubDesc, membershipCri, status;
 
-            clubId = data.getString("club_id");
-            clubName = data.getString("club_name");
-            clubDesc = data.getString("description");
-            membershipCri = data.getString("membership_criteria");
-            if (data.getString("status").equals("1")){
-                status = "Active";
-            }else {
-                status = "Inactive";
-            }
-            System.out.format("|%8s | %-30s | %-40s | %-20s | %10s |", clubId, clubName, clubDesc, membershipCri, status);
+            Club tempClub = new Club(data.getString("club_id"), data.getString("club_name"), data.getString("description"), data.getString("membership_criteria"), data.getString("status"));
+
+            System.out.format("|%8s | %-30s | %-40s | %-20s | %10s |", tempClub.getClub_id(), tempClub.getClub_name(), tempClub.getClub_description(), tempClub.getMembershipCriteria(), tempClub.getClubStatus());
             System.out.println();
         }
         System.out.println(line);
