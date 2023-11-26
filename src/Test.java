@@ -4,7 +4,7 @@ public class Test {
         ClubFunc clubFunc = new ClubFunc();
 
         try{
-            clubFunc.viewAllClubs();
+            register.selectClub();
         }
         catch (Exception e ){
             System.out.println(e);

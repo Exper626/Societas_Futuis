@@ -29,7 +29,7 @@ public class ClubFunc {
         while(clubListArray.size() > num){
             Club tempClub = new Club(clubListArray.get(num).getClub_id(), clubListArray.get(num).getClub_name(), clubListArray.get(num).getClub_description(), clubListArray.get(num).getMembershipCriteria(), clubListArray.get(num).getClubStatus());
 
-            System.out.format("|%3s |%8s | %-30s | %-40s | %-20s | %10s |", num, tempClub.getClub_id(), tempClub.getClub_name(), tempClub.getClub_description(), tempClub.getMembershipCriteria(), tempClub.getClubStatus());
+            System.out.format("|%3s |%8s | %-30s | %-40s | %-20s | %10s |", (num+1), tempClub.getClub_id(), tempClub.getClub_name(), tempClub.getClub_description(), tempClub.getMembershipCriteria(), tempClub.getClubStatus());
             System.out.println();
             num++;
         }
@@ -49,7 +49,6 @@ public class ClubFunc {
             clubListArray.add(tempClub);
         }
 
-        System.out.println(clubListArray.get(1).getClub_id());
         return clubListArray;
 
     }

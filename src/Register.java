@@ -50,11 +50,37 @@ public class Register {
     }
 
     public void selectClub() throws SQLException {
-        ArrayList<Club> temp = new ArrayList<>();
-        SqlConnection sqlConnection = new SqlConnection();
-        sqlConnection.startConnection();
-        String query = "SELECT * FROM test.club;";
-        ResultSet data = sqlConnection.executeQuery(query);
+        ClubFunc clubFunc = new ClubFunc();
+        Scanner input = new Scanner(System.in);
+
+        ArrayList<Club> clubListArray = new ArrayList<>();
+        ArrayList<Club> selectedClubArray = new ArrayList<>();
+
+
+        clubListArray = clubFunc.getClubs();
+        clubFunc.viewAllClubs();
+
+        while(true){
+            System.out.println("Please select the club(s) you want to join,");
+            System.out.println("1 - join club\n" +
+                    "2 - Continue");
+            System.out.print("Your option: ");
+            String option = input.next();
+
+            if (option.equals("1")){
+                int clubNum;
+                System.out.println("\nPlease type club number in the first row,");
+                System.out.print("Club: ");
+                clubNum = input.nextInt();
+                clubNum = clubNum - 1;
+
+                System.out.println(clubListArray.get(clubNum).getClub_id());
+
+
+
+            }
+        }
+
     }
 
     public String getConfirmation() {
