@@ -2,10 +2,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Login {
-    public void loginAuth(String username, String password) throws SQLException {
+    public boolean loginAuth(String username, String password) throws SQLException {
         SqlConnection sqlConnection = new SqlConnection();
         sqlConnection.startConnection();
-        String query = "select advisor_id,password, first_name from test.advisor";
+        String query = "select advisor_id, password, first_name from test.advisor";
         ResultSet data = sqlConnection.executeQuery(query);
 
         while(data.next()){
@@ -14,8 +14,11 @@ public class Login {
 
             if ((username.equals(dataUsername)) && (password.equals(dataPassword))){
                 System.out.println("Welcome " + data.getString("first_name"));
-                break;
+                sqlConnection.closeConnection();
+                return true;
             }
         }
+        sqlConnection.closeConnection();
+        return false;
     }
 }
