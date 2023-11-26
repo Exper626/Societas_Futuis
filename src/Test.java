@@ -3,7 +3,13 @@ public class Test {
         Login login = new Login();
 
         try{
-            login.loginAuth("a0002","pass123");
+
+            Advisor loggedAdvisor = (Advisor) login.loginAuth("a0002","pass123");
+            System.out.println(loggedAdvisor.getEmail());
+            if (login.getUserType().equals("a")){
+                System.out.println("advisor boi");
+            }
+
         }
         catch (Exception e ){
             System.out.println(e);

@@ -4,6 +4,11 @@ public class Student extends User{
     private String student_id;
     private String DOT;
     private String year_of_study;
+
+    public Student(){
+
+    }
+
     Student(String student_id,String password, String first_name, String last_name, String contact_number, String dot, String year_of_study) {
         super(password, first_name, last_name, contact_number);
         this.student_id = student_id;

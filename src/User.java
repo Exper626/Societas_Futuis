@@ -4,6 +4,10 @@ public class User {
     private String last_name;
     private String contact_number;
 
+    public User() {
+
+    }
+
     User(String password, String first_name, String last_name, String contact_number){
         this.password = password;
         this.first_name = first_name;
@@ -33,5 +37,9 @@ public class User {
 
     public void setContact_number(String contact_number) {
         this.contact_number = contact_number;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }
