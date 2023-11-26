@@ -4,7 +4,14 @@ public class Main {
     public static void main(String[] args) {
 
         Main main = new Main();
+        ClubFunc clubFunc = new ClubFunc();
+        try {
+            clubFunc.viewAllClubs();
+        }
 
+        catch (Exception e){
+            System.out.println(e);
+        }
 
 
     }
