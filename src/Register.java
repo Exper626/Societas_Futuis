@@ -1,5 +1,6 @@
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Register {
@@ -13,27 +14,32 @@ public class Register {
 
             studentId = generateStudentID();
 
+            System.out.println("\nPlease type 'c' to confirm the details, or 'q' to go back to the menu.\n" +
+                    "Username: " + studentId +
+                    "\nPassword: " + password +
+                    "\nFirst name: " + firstName +
+                    "\nLast name: " + lastName +
+                    "\nContact number: " + contactNumber +
+                    "\nDate of birth: " + dateOfBirth +
+                    "\nyear of study: " + yearOfStudy);
+
             while(true){
                 String confirmation;
-                System.out.println("Please type 'c' to confirm the details, or 'q' to go back to the menu.\n" +
-                        "Username: " + studentId +
-                        "\nPassword: " + password +
-                        "\nFirst name: " + firstName +
-                        "\nLast name: " + lastName +
-                        "\nContact number: " + contactNumber +
-                        "\nDate of birth: " + dateOfBirth +
-                        "\nyear of study: " + yearOfStudy);
 
                 System.out.print("Type here: ");
                 confirmation = input.nextLine();
 
                 setConfirmation(confirmation);
 
-                if (getConfirmation().equals("c")){
-
-                    System.out.println("You have successfully registered!");
-                }else {
+                if (confirmation.equals("c")){
+                    this.confirmation = "confirmed";
                     break;
+                }else if (confirmation.equals("m")){
+                    this.confirmation ="goBack";
+                    break;
+                }
+                else {
+                    System.out.println("\nInvalid option. Please try again...");
                 }
             }
         }
@@ -41,6 +47,14 @@ public class Register {
             System.out.println(e);
         }
 
+    }
+
+    public void selectClub() throws SQLException {
+        ArrayList<Club> temp = new ArrayList<>();
+        SqlConnection sqlConnection = new SqlConnection();
+        sqlConnection.startConnection();
+        String query = "SELECT * FROM test.club;";
+        ResultSet data = sqlConnection.executeQuery(query);
     }
 
     public String getConfirmation() {

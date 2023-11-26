@@ -23,7 +23,6 @@ public class Main {
                 firstName = main.input.next();
 
 
-
                 System.out.print("Last name: ");
                 lastName = main.input.next();
 
@@ -48,11 +47,17 @@ public class Main {
 
                 register.register(password, firstName, lastName, contactNumber, dateOfBirth, yearOfStudy);
 
-                if (register.getConfirmation().equals("c")){
-                    System.out.println("Welcome " + firstName + "!");
-                    System.out.println("Please select the clubs you want to join,");
+                if (register.getConfirmation().equals("confirmed")){
+                    System.out.println("You have successfully registered!\n Please select the clubs you want to join.(you always join or leave clubs later).");
+                    ClubFunc clubFunc = new ClubFunc();
+                    try{
+                        clubFunc.viewAllClubs();
+                    }
+                    catch (Exception e){
+                        System.out.println(e);
+                    }
                 }
-                else {
+                else if (register.getConfirmation().equals("goBack")){
 
                 }
 
