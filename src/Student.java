@@ -28,6 +28,10 @@ public class Student extends User{
         return this.year_of_study;
     }
 
+    public void setStudent_id(String student_id) {
+        this.student_id = student_id;
+    }
+
     public void setYear_of_study(String year_of_study) {
         this.year_of_study = year_of_study;
     }

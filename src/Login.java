@@ -5,7 +5,7 @@ public class Login {
     private boolean isLoginAuth = false;
     private String userType;
 
-    public User loginAuth(String username, String password) throws SQLException {
+    public User loginAdvisorAuth(String username, String password) throws SQLException {
         SqlConnection sqlConnection = new SqlConnection();
         sqlConnection.startConnection();
         String query = "select * from test.advisor";
@@ -19,19 +19,25 @@ public class Login {
 
             if ((username.equals(dataUsername)) && (password.equals(dataPassword))){
                 isLoginAuth = true;
-                if (username.charAt(0) == 'a'){
-                    String dataContactNumber = data.getString("contact_number");
-                    String dataEmail = data.getString("email");
-                    Advisor loggedAdvisor = new Advisor(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataEmail);
-                    System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
-                    setUserType("a");
-                    return loggedAdvisor;
-                } else if (username.charAt(0) == 's') {
-                    Student loggedStudent = new Student();
-                    setUserType("s");
-                    return loggedStudent;
-                }
-                sqlConnection.closeConnection();
+                String dataContactNumber = data.getString("contact_number");
+                String dataEmail = data.getString("email");
+                Advisor loggedAdvisor = new Advisor(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataEmail);
+                System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
+                setUserType("a");
+                return loggedAdvisor;
+
+//                if (username.charAt(0) == 'a'){
+//                    String dataContactNumber = data.getString("contact_number");
+//                    String dataEmail = data.getString("email");
+//                    Advisor loggedAdvisor = new Advisor(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataEmail);
+//                    System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
+//                    setUserType("a");
+//                    return loggedAdvisor;
+//                } else if (username.charAt(0) == 's') {
+//                    Student loggedStudent = new Student();
+//                    setUserType("s");
+//                    return loggedStudent;
+//                }
             }
         }
         sqlConnection.closeConnection();

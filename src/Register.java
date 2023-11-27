@@ -6,16 +6,22 @@ import java.util.Scanner;
 public class Register {
     private SqlConnection sqlConnection = new SqlConnection();
     private String studentId, password, firstName, lastName, contactNumber, dateOfBirth, YearOfStudy, confirmation;
+    private Student newStudent;
 
     public void register(String password, String firstName, String lastName, String contactNumber, String dateOfBirth, String yearOfStudy){
         try{
+            //Creating scanner obj
             Scanner input = new Scanner(System.in);
+
+            //start connection between the database and the code
             sqlConnection.startConnection();
 
-            studentId = generateStudentID();
+            //generate unique identifier for student
+            this.studentId = generateStudentID();
 
+            //Display student details to confirm
             System.out.println("\nPlease type 'c' to confirm the details, or 'q' to go back to the menu.\n" +
-                    "Username: " + studentId +
+                    "Username: " + this.studentId +
                     "\nPassword: " + password +
                     "\nFirst name: " + firstName +
                     "\nLast name: " + lastName +
@@ -26,18 +32,30 @@ public class Register {
             while(true){
                 String confirmation;
 
+                //get user input
                 System.out.print("Type here: ");
                 confirmation = input.nextLine();
 
+                //set confirmation variable to user's input
                 setConfirmation(confirmation);
 
+                //if the user confirms the details to complete the registration process
                 if (confirmation.equals("c")){
                     this.confirmation = "confirmed";
+                    String query = "insert into test.student values" +
+                            "('" + studentId +"', '" + password + "', '" + firstName + "', '" + lastName + "', '" + contactNumber + "', '" + dateOfBirth + "', '" + yearOfStudy +  "');";
+                    sqlConnection.insertData(query);
+
+                    System.out.println(firstName + ", Welcome!");
+                    System.out.println("You have successfully registered!\n");
                     break;
-                }else if (confirmation.equals("m")){
+                }
+                //go back to the menu
+                else if (confirmation.equals("m")){
                     this.confirmation ="goBack";
                     break;
                 }
+                //when user gives an invalid input
                 else {
                     System.out.println("\nInvalid option. Please try again...");
                 }
@@ -49,60 +67,48 @@ public class Register {
 
     }
 
-    public void selectClub() throws SQLException {
-        ClubFunc clubFunc = new ClubFunc();
-        Scanner input = new Scanner(System.in);
-
-        ArrayList<Club> clubListArray = new ArrayList<>();
-        ArrayList<Club> selectedClubArray = new ArrayList<>();
-
-
-        clubListArray = clubFunc.getClubs();
-        clubFunc.viewAllClubs();
-
-        while(true){
-            System.out.println("Please select the club(s) you want to join,");
-            System.out.println("1 - join club\n" +
-                    "2 - Continue");
-            System.out.print("Your option: ");
-            String option = input.next();
-
-            if (option.equals("1")){
-                int clubNum;
-                System.out.println("\nPlease type club number in the first row,");
-                System.out.print("Club: ");
-                clubNum = input.nextInt();
-                clubNum = clubNum - 1;
-
-                System.out.println(clubListArray.get(clubNum).getClub_id());
-
-
-
-            }
-        }
-
-    }
-
+    // get the value of the confirmation variable
     public String getConfirmation() {
         return this.confirmation;
     }
 
+    // setter for confirmation variable
     public void setConfirmation(String confirmation) {
         this.confirmation = confirmation;
     }
 
+    // generate unique identifier for student
     public String generateStudentID() throws SQLException {
+        // establish connection with database
         sqlConnection.startConnection();
+
+        // MySQL query to get the last row of the student table
         String getLatestId = "SELECT * FROM test.student ORDER BY student_id DESC LIMIT 1";
+        //execute the query
         ResultSet latestIdResult = sqlConnection.executeQuery(getLatestId);
-        String strNextId = "s000001";
+
+        //default unique identifier if students doesn't exist in the student table
+            String strNextId = "s000001";
+
+        //loop through the data in the student table
         while(latestIdResult.next()){
+            //get the student_id from the resultSet
             String strLatestId = latestIdResult.getNString("student_id");
+            //remove the first letter if the id
             strLatestId = strLatestId.substring(1);
+            // convert the string to integer
             int intLatestId = Integer.parseInt(strLatestId);
+            //add +1
             int intNextId = intLatestId + 1;
+            //convert the id to string in the format of s000000
             strNextId = String.format("s%06d", intNextId);
         }
+        //return the generated id
         return strNextId;
+    }
+
+    //getter method for new student
+    public Student getNewStudent() {
+        return newStudent;
     }
 }
