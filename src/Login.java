@@ -23,34 +23,40 @@ public class Login {
                 String dataEmail = data.getString("email");
                 Advisor loggedAdvisor = new Advisor(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataEmail);
                 System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
-                setUserType("a");
                 return loggedAdvisor;
-
-//                if (username.charAt(0) == 'a'){
-//                    String dataContactNumber = data.getString("contact_number");
-//                    String dataEmail = data.getString("email");
-//                    Advisor loggedAdvisor = new Advisor(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataEmail);
-//                    System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
-//                    setUserType("a");
-//                    return loggedAdvisor;
-//                } else if (username.charAt(0) == 's') {
-//                    Student loggedStudent = new Student();
-//                    setUserType("s");
-//                    return loggedStudent;
-//                }
             }
         }
         sqlConnection.closeConnection();
-        setUserType("invalid");
-        User invalidUser= new User();
-        return invalidUser;
+        User temp= new User();
+        return temp;
     }
 
-    public String getUserType() {
-        return this.userType;
+    public User loginStudentAuth(String username, String password) throws SQLException {
+        SqlConnection sqlConnection = new SqlConnection();
+        sqlConnection.startConnection();
+        String query = "select * from test.student";
+        ResultSet data = sqlConnection.executeQuery(query);
+
+        while(data.next()){
+            String dataUsername = data.getString("student_id");
+            String dataPassword = data.getString("password");
+            String dataFirstName = data.getString("first_name");
+            String dataLastName = data.getString("last_name");
+            String dataContactNumber = data.getString("contact_number");
+            String dateOfBirth = data.getString("date_of_birth");
+            String grade = data.getString("year_of_study");
+
+            if ((username.equals(dataUsername)) && (password.equals(dataPassword))){
+                isLoginAuth = true;
+                Student loggedStudent = new Student(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataContactNumber, grade);
+                System.out.println("Welcome " + loggedStudent.getFirst_name() + "!");
+                return loggedStudent;
+            }
+        }
+        sqlConnection.closeConnection();
+        User temp= new User();
+        return temp;
+
     }
 
-    public void setUserType(String userType) {
-        this.userType = userType;
-    }
 }

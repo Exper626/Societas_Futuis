@@ -1,11 +1,7 @@
 import java.util.Scanner;
 
 public class Main {
-    private Scanner input = new Scanner(System.in);
-    private Scanner usernameInput = new Scanner(System.in);
-    private Scanner passwordInput = new Scanner(System.in);
-    private Student student = new Student();
-
+    private Scanner input = new Scanner(System.in);;
     public static void main(String[] args) {
         //create login obj
         Login login = new Login();
@@ -16,7 +12,8 @@ public class Main {
 
         //define variables
         int option;
-        String username, password, userType, firstName, lastName, contactNumber, dateOfBirth, yearOfStudy;
+        String username, password, firstName, lastName, contactNumber, dateOfBirth, yearOfStudy;
+        UserType userType;
 
         //loop main menu
         while(true){
@@ -107,7 +104,7 @@ public class Main {
                         userType = menuFunc.getUserType(username);
 
                         //advisor login
-                        if (userType.equals("advisor")){
+                        if (userType == UserType.ADVISOR){
                             //authenticate creds
                             Advisor loggedAdvisor = (Advisor) login.loginAdvisorAuth(username, password);
                             System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
@@ -115,12 +112,15 @@ public class Main {
                         }
 
                         //student login
-                        else if (userType.equals("student")) {
-                            System.out.println("student");
+                        else if (userType == UserType.STUDENT) {
+                            //authenticate creds
+                            Student loggedStudent = (Student) login.loginStudentAuth(username, password);
+                            System.out.println("Welcome " + loggedStudent.getFirst_name() + "!");
+                            break;
                         }
 
                         //invalid user
-                        else if (userType.equals("invalid")) {
+                        else if (userType == UserType.INVALID) {
                             System.out.println("Invalid username, Please try again");
                         }
                     }
@@ -130,7 +130,6 @@ public class Main {
                     catch (Exception e){
                         System.out.println(e);
                     }
-
                 }
                 break;
 

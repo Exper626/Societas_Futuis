@@ -2,6 +2,8 @@ public class Advisor extends User{
     private String advisor_id;
     private String email;
 
+    private UserType type = UserType.ADVISOR;
+
     Advisor(){
 
     }
@@ -18,6 +20,10 @@ public class Advisor extends User{
 
     public String getEmail() {
         return this.email;
+    }
+
+    public UserType getType() {
+        return this.type;
     }
 
     public void setEmail(String email) {

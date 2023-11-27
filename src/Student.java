@@ -4,6 +4,7 @@ public class Student extends User{
     private String student_id;
     private String DOT;
     private String year_of_study;
+    private UserType type = UserType.STUDENT;
 
     public Student(){
 
@@ -28,6 +29,10 @@ public class Student extends User{
         return this.year_of_study;
     }
 
+    public UserType getType() {
+        return this.type;
+    }
+
     public void setStudent_id(String student_id) {
         this.student_id = student_id;
     }
@@ -39,4 +44,5 @@ public class Student extends User{
     public void setDOT(String DOT) {
         this.DOT = DOT;
     }
+
 }

@@ -132,14 +132,14 @@ public class MenuFunc {
         return false;
     }
 
-    public String getUserType(String username){
+    public UserType getUserType(String username){
         String userType;
         if (username.charAt(0) == 'a'){
-            return "advisor";
+            return UserType.ADVISOR;
         } else if (username.charAt(0) == 's') {
-            return "student";
+            return UserType.STUDENT;
         }else {
-            return "invalid";
+            return UserType.INVALID;
         }
     }
 
