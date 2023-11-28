@@ -30,22 +30,7 @@ public class Club {
         }
     }
 
-    public String generateClubId() throws SQLException {
-        sqlConnection.startConnection();
-        String getLatestId = "SELECT * FROM test.club ORDER BY club_id DESC LIMIT 1";
-        ResultSet latestIdResult = sqlConnection.executeQuery(getLatestId);
-        String strNextId = "c000";
-        while(latestIdResult.next()){
-            String strLatestId = latestIdResult.getNString("club_id");
-            strLatestId = strLatestId.substring(1);
-            int intLatestId = Integer.parseInt(strLatestId);
-            int intNextId = intLatestId + 1;
-            strNextId = String.format("c%03d", intNextId);
-        }
-        sqlConnection.closeConnection();
-        return strNextId;
 
-    }
 
     public String getClub_id() {
         return this.club_id;

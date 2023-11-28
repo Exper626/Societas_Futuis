@@ -46,6 +46,22 @@ public class SqlConnection {
 
     }
 
+    //update data of a table
+    public void updateData(String query){
+        try {
+            //PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+            //create a statement for executing the MySQL query
+            Statement updateData = connection.createStatement();
+            // Execute the query to insert, update, or delete data
+            updateData.executeUpdate(query);
+
+        }
+        catch (Exception e){
+            System.out.println(e);
+        }
+    }
+
     // close connection with the database
     public void closeConnection(){
         try{
