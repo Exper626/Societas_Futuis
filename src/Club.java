@@ -2,14 +2,13 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Club {
-    private String club_id;
+    private final String club_id;
     private String club_name;
     private String club_description;
     private String membershipCriteria;
-
     private boolean club_status = true;
 
-    private SqlConnection sqlConnection = new SqlConnection();
+    private final SqlConnection sqlConnection = new SqlConnection();
 
     public Club(String club_id, String club_name, String club_description, String membershipCriteria){
         this.club_id = club_id;

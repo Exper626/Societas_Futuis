@@ -1,5 +1,3 @@
-import java.util.Date;
-
 public class Student extends User{
     private String student_id;
     private String DOT;
