@@ -3,8 +3,18 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Register {
-    private SqlConnection sqlConnection = new SqlConnection();
-    private String studentId, password, firstName, lastName, contactNumber, dateOfBirth, YearOfStudy, confirmation;
+
+    /* Contribution - Weerasinghe, Damitha 20210669/2236765 */
+
+
+    private final SqlConnection sqlConnection = new SqlConnection();
+    private String password;
+    private String firstName;
+    private String lastName;
+    private String contactNumber;
+    private String dateOfBirth;
+    private String YearOfStudy;
+    private String confirmation;
     private Student newStudent;
 
     public void register(String password, String firstName, String lastName, String contactNumber, String dateOfBirth, String yearOfStudy){
@@ -16,11 +26,11 @@ public class Register {
             sqlConnection.startConnection();
 
             //generate unique identifier for student
-            this.studentId = generateStudentID();
+            String studentId = generateStudentID();
 
             //Display student details to confirm
             System.out.println("\nPlease type 'c' to confirm the details, or 'q' to go back to the menu.\n" +
-                    "Username: " + this.studentId +
+                    "Username: " + studentId +
                     "\nPassword: " + password +
                     "\nFirst name: " + firstName +
                     "\nLast name: " + lastName +
@@ -41,7 +51,7 @@ public class Register {
                 //if the user confirms the details to complete the registration process
                 if (confirmation.equals("c")){
                     this.confirmation = "confirmed";
-                    String query = "insert into test.student values" +
+                    String query = "insert into student values" +
                             "('" + studentId +"', '" + password + "', '" + firstName + "', '" + lastName + "', '" + contactNumber + "', '" + dateOfBirth + "', '" + yearOfStudy +  "');";
                     sqlConnection.insertData(query);
 
@@ -82,7 +92,7 @@ public class Register {
         sqlConnection.startConnection();
 
         // MySQL query to get the last row of the student table
-        String getLatestId = "SELECT * FROM test.student ORDER BY student_id DESC LIMIT 1";
+        String getLatestId = "SELECT * FROM student ORDER BY student_id DESC LIMIT 1";
         //execute the query
         ResultSet latestIdResult = sqlConnection.executeQuery(getLatestId);
 

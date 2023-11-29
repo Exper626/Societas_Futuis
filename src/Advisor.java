@@ -1,4 +1,10 @@
 public class Advisor extends User{
+
+    /* Contribution - Azhar, Hanaa 20221313/2237922 */
+    /* Contribution - Haniffa, Haadiya 20211462/2237937 */
+    /* Contribution - Napevithanage, Gouri 20210808/223794 */
+    /* Contribution - Weerasinghe, Damitha 20210669/2236765 */
+
     private String advisor_id;
     private String email;
 
@@ -14,6 +20,8 @@ public class Advisor extends User{
         this.email = email;
     }
 
+
+    //getter setter methods
     public String getAdvisor_id() {
         return this.advisor_id;
     }

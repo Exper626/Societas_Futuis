@@ -1,14 +1,17 @@
 import java.sql.SQLException;
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MenuFunc {
+
+    /* Contribution - Weerasinghe, Damitha 20210669/2236765 */
+    /* Contribution - Napevithanage, Gouri 20210808/223794 */
+    /* Contribution - Haniffa, Haadiya 20211462/2237937 */
+
     public void selectClub(String studentId, String firstName) throws SQLException {
         ClubFunc clubFunc = new ClubFunc();
         Scanner input = new Scanner(System.in);
@@ -38,7 +41,7 @@ public class MenuFunc {
                 String selectedClubId = clubListArray.get(clubNum).getClub_id();
                 String loggedStudentId = studentId;
 
-                String query = "insert into test.student_club values" +
+                String query = "insert into student_club values" +
                         "('" + loggedStudentId + "', '" + selectedClubId + "');";
                 sqlConnection.startConnection();
                 sqlConnection.insertData(query);

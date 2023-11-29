@@ -2,13 +2,16 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class Login {
+
+    /* Contribution - Weerasinghe, Damitha 20210669/2236765 */
+
     private boolean isLoginAuth = false;
     private String userType;
 
     public User loginAdvisorAuth(String username, String password) throws SQLException {
         SqlConnection sqlConnection = new SqlConnection();
         sqlConnection.startConnection();
-        String query = "select * from test.advisor";
+        String query = "select * from advisor";
         ResultSet data = sqlConnection.executeQuery(query);
 
         while(data.next()){
@@ -22,7 +25,6 @@ public class Login {
                 String dataContactNumber = data.getString("contact_number");
                 String dataEmail = data.getString("email");
                 Advisor loggedAdvisor = new Advisor(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataEmail);
-                System.out.println("Welcome " + loggedAdvisor.getFirst_name() + "!");
                 return loggedAdvisor;
             }
         }
@@ -34,7 +36,7 @@ public class Login {
     public User loginStudentAuth(String username, String password) throws SQLException {
         SqlConnection sqlConnection = new SqlConnection();
         sqlConnection.startConnection();
-        String query = "select * from test.student";
+        String query = "select * from student";
         ResultSet data = sqlConnection.executeQuery(query);
 
         while(data.next()){
@@ -49,7 +51,6 @@ public class Login {
             if ((username.equals(dataUsername)) && (password.equals(dataPassword))){
                 isLoginAuth = true;
                 Student loggedStudent = new Student(dataUsername, dataPassword, dataFirstName, dataLastName, dataContactNumber, dataContactNumber, grade);
-                System.out.println("Welcome " + loggedStudent.getFirst_name() + "!");
                 return loggedStudent;
             }
         }

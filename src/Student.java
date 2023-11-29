@@ -1,4 +1,7 @@
 public class Student extends User{
+
+    /* Contribution - Weerasinghe, Damitha 20210669/2236765 */
+
     private String student_id;
     private String DOT;
     private String year_of_study;

@@ -1,4 +1,7 @@
 public class User {
+
+    /* Contribution - Weerasinghe, Damitha 20210669/2236765 */
+
     private String password;
     private String first_name = "lama";
     private String last_name;
