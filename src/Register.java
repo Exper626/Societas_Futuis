@@ -3,9 +3,8 @@ import java.sql.SQLException;
 import java.util.Scanner;
 
 public class Register {
-    private SqlConnection sqlConnection = new SqlConnection();
+    private final SqlConnection sqlConnection = new SqlConnection();
     private String studentId, password, firstName, lastName, contactNumber, dateOfBirth, YearOfStudy, confirmation;
-    private Student newStudent;
 
     public void register(String password, String firstName, String lastName, String contactNumber, String dateOfBirth, String yearOfStudy){
         try{
@@ -106,8 +105,4 @@ public class Register {
         return strNextId;
     }
 
-    //getter method for new student
-    public Student getNewStudent() {
-        return newStudent;
-    }
 }

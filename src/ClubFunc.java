@@ -4,17 +4,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ClubFunc {
-    public void addClub(Club newClub) throws SQLException {
-        SqlConnection sqlConnection = new SqlConnection();
-        sqlConnection.startConnection();
-        String query = "INSERT INTO test.club VALUES" + "('" + newClub.getClub_id() + "', '" + newClub.getClub_name() +
-                "', '" + newClub.getClub_description() + "', true)";
-        System.out.println(query);
-        sqlConnection.insertData(query);
-        System.out.println("added");
-        sqlConnection.closeConnection();
-    }
-
     public void viewAllClubs() throws SQLException {
         int num =0;
 

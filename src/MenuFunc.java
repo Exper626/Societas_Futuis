@@ -9,52 +9,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class MenuFunc {
-    public void selectClub(String studentId, String firstName) throws SQLException {
-        ClubFunc clubFunc = new ClubFunc();
-        Scanner input = new Scanner(System.in);
-        SqlConnection sqlConnection = new SqlConnection();
-
-        ArrayList<Club> clubListArray = new ArrayList<>();
-        ArrayList<Club> selectedClubArray = new ArrayList<>();
-
-
-        clubListArray = clubFunc.getClubs();
-        clubFunc.viewAllClubs();
-
-        while(true){
-            System.out.println("Please select the club(s) you want to join,");
-            System.out.println("1 - join club\n" +
-                    "2 - Continue");
-            System.out.print("Your option: ");
-            String option = input.next();
-
-            if (option.equals("1")){
-                int clubNum;
-                System.out.println("\nPlease type club number in the first row,");
-                System.out.print("Club: ");
-                clubNum = input.nextInt();
-                clubNum = clubNum - 1;
-
-                String selectedClubId = clubListArray.get(clubNum).getClub_id();
-                String loggedStudentId = studentId;
-
-                String query = "insert into test.student_club values" +
-                        "('" + loggedStudentId + "', '" + selectedClubId + "');";
-                sqlConnection.startConnection();
-                sqlConnection.insertData(query);
-
-                System.out.println("\n" + firstName + " have successfully joined " + clubListArray.get(clubNum).getClub_name() + "!\n");
-
-            }
-            else if (option.equals("2")) {
-                break;
-            }
-            else {
-                System.out.println("Invalid option. Please try again.");
-            }
-        }
-
-    }
 
     //validate password
     public boolean isValidPassword(String password){
