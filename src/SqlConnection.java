@@ -40,7 +40,7 @@ public class SqlConnection {
             // Execute the query to insert, update, or delete data
             insertData.executeUpdate(query);
         }
-        catch (Exception e){
+        catch (SQLException e){
             System.out.println(e);
         }
 
@@ -57,7 +57,7 @@ public class SqlConnection {
             updateData.executeUpdate(query);
 
         }
-        catch (Exception e){
+        catch (SQLException e){
             System.out.println(e);
         }
     }

@@ -99,7 +99,6 @@ public class Main {
                         //display results
                         clubFunc.displayClubResults(resultClub);
                         break;
-
                     }
 
                     //go back

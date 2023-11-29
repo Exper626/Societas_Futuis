@@ -264,7 +264,6 @@ public class ClubFunc {
 
     }
 
-
     public String generateClubId() throws SQLException {
         SqlConnection sqlConnection = new SqlConnection();
         sqlConnection.startConnection();
